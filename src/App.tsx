@@ -31,7 +31,7 @@ export const App: React.FC = () => {
         <>
           <button onClick={() => AddDataReducer.call()}>Add data</button>
           <button onClick={updateValues}>Update data</button>
-          <button onClick={() => setData(DataTable.all())}>Update data</button>
+          <button onClick={() => setData(DataTable.all())}>Refetch data</button>
 
           <div>
             {data?.map((d: DataTable) => {
