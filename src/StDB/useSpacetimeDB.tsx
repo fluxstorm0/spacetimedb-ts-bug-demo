@@ -4,13 +4,28 @@ import DataTable from "../module_bindings/data_table";
 import UpdateRandomDataOneReducer from "../module_bindings/update_random_data_one_reducer";
 import UpdateRandomDataTwoReducer from "../module_bindings/update_random_data_two_reducer";
 import AddDataReducer from "../module_bindings/add_data_reducer";
+import DeleteAllReducer from "../module_bindings/delete_all_reducer";
 
-const useSpacetimeDB = (address: string, module: string, initialized: boolean, setInitialized: Function) => {
+const useSpacetimeDB = (
+  address: string,
+  module: string,
+  initialized: boolean,
+  setInitialized: Function,
+  setClient: Function,
+  reconnect?: boolean
+) => {
   useEffect(() => {
     if (initialized) return;
 
-    SpacetimeDBClient.registerTables(DataTable);
-    SpacetimeDBClient.registerReducers(AddDataReducer, UpdateRandomDataOneReducer, UpdateRandomDataTwoReducer);
+    if (!reconnect) {
+      SpacetimeDBClient.registerTables(DataTable);
+      SpacetimeDBClient.registerReducers(
+        AddDataReducer,
+        UpdateRandomDataOneReducer,
+        UpdateRandomDataTwoReducer,
+        DeleteAllReducer
+      );
+    }
 
     const client = new SpacetimeDBClient(address, module);
 
@@ -32,6 +47,8 @@ const useSpacetimeDB = (address: string, module: string, initialized: boolean, s
     });
 
     client?.connect();
+
+    setClient(client);
   }, [initialized, setInitialized]);
 };
 

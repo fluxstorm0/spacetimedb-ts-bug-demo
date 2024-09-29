@@ -58,4 +58,10 @@ static partial class Module
         
         DataTable.UpdateById(id, updatedData);
     }
+    
+    [SpacetimeDB.Reducer]
+    public static void DeleteAll(ReducerContext ctx, uint id)
+    {
+        DataTable.DeleteById(id);
+    }
 }
