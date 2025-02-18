@@ -8,7 +8,7 @@ import UpdateRandomDataTwoReducer from "./module_bindings/update_random_data_two
 import DeleteAllReducer from "./module_bindings/delete_all_reducer";
 import { SpacetimeDBClient } from "@clockworklabs/spacetimedb-sdk";
 
-const SPACETIMEDB_HOST_ADDRESS = "wss://testnet.spacetimedb.com";
+const SPACETIMEDB_HOST_ADDRESS = "wss://pglybe.dungeontalk.live/";
 const SPACETIMEDB_MODULE_NAME = "spacetime-logout-test";
 
 export const App: React.FC = () => {
